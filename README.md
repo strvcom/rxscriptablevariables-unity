@@ -15,6 +15,14 @@ public BoolVariable myVariableName;
 ```
 And use it anyway you with. I prefer to use references for reading the values and variables for writing into them.
 
+# Persistance
+There is a simple, generic, build in solution for persisting variables. What you need to do is
+   - Create a persistor (Create -> Variables -> Persistance -> Persistor)
+   - Create serializer (Create -> Variables -> Persistance -> Serializer) - You can choose from serializers that persist into player prefs or persistentDataPath
+   - Assign the serializer into the persistor, give it a filename
+   - Assign variables you want to persist into the persistor
+   - Use Save/Load to save and load the data
+   - (optional) - Put SaveDataWatcher on a game object, assign it a persistor(s), it will save / load data automatically and periodically
 
 # Creating new custom variables
 To simplify the process of creation of new variables and editor scripts for them I have implemented tool that help you with that
