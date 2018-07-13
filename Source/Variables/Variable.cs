@@ -5,12 +5,32 @@ using STRV.Variables.Utils;
 using UniRx;
 #endif
 using System.Collections.Generic;
+using STRV.Variables.Persistance;
 using UnityEngine.Assertions;
 
 namespace STRV.Variables
 {
+    // Non-generic type to allow it to be exposed in Unity Inspector
+    public abstract class Variable : ScriptableObject, ISerializable
+    {
+        public virtual string GetKey()
+        {
+            return GetInstanceID().ToString();
+        }
+
+        public virtual string GetStringValue()
+        {
+            throw new NotImplementedException("Please implement this on Variable subsclass to support it's persisting: " + GetType().Name);
+        }
+
+        public virtual void SetStringValue(string value)
+        {
+            throw new NotImplementedException("Please implement this on Variable subsclass to support it's persisting: " + GetType().Name);
+        }
+    }
+    
     /// Generic base variable that all other variables inherit
-    public abstract class Variable<T> : ScriptableObject
+    public abstract class Variable<T> : Variable
     {
         [Header("Remote Settings:")]
         public bool RemoteSettingsVariable;

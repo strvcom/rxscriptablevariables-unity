@@ -2,7 +2,7 @@
 
 namespace STRV.Variables
 {
-    [CreateAssetMenu(menuName = "Variables/String")]
+    [CreateAssetMenu(menuName = "Variables/String", order = 53)]
     public class StringVariable : Variable<string>
     {
         protected override void SyncValue()
@@ -14,6 +14,16 @@ namespace STRV.Variables
         public override bool SupportsRemoteSettings()
         {
             return true;
+        }
+        
+        public override string GetStringValue()
+        {
+            return CurrentValue;
+        }
+
+        public override void SetStringValue(string value)
+        {
+            HandleValueChange(value);
         }
     }
 }
