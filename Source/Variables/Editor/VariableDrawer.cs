@@ -49,15 +49,38 @@ namespace STRV.Variables
 
             if (_target == null)
                 return;
+            
+            // Draw script
+            serializedObject.Update();
+            SerializedProperty prop = serializedObject.FindProperty("m_Script");
+            EditorGUILayout.PropertyField(prop, true);
+            
 
-            DrawDefaultInspector();
-            ExposeProperties.Expose(_fields);
+            if (_target.SupportsRemoteSettings())
+            {
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("RemoteSettingsVariable"), true);  
+            }
+            else
+            {
+                _target.RemoteSettingsVariable = false;
+            }
+
+            if (_target.RemoteSettingsVariable)
+            {
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("RemoteSettingsId"), true);
+            }
+            
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("DeveloperDescription"), true);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("DefaultValue"), true);
+            ExposeProperties.Expose(_fields); // Current value
 
             if (_target != null && _target.CurrentValue != null && _target.DefaultValue != null && !_target.CurrentValue.Equals(_target.DefaultValue)) {
                 if (GUILayout.Button("Current -> Default")) {
                     _target.DefaultValue = _target.CurrentValue;
                 }
             }
+            
+            serializedObject.ApplyModifiedProperties();
         }
     }
 }

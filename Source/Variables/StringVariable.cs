@@ -8,10 +8,10 @@ namespace STRV.Variables
         protected override void SyncValue()
         {
             var remoteValue = RemoteSettings.GetString(RemoteSettingsId, CurrentValue);
-            CurrentValue = remoteValue;
+            HandleValueChange(remoteValue);
         }
 
-        protected override bool SupportsRemoteSettings()
+        public override bool SupportsRemoteSettings()
         {
             return true;
         }

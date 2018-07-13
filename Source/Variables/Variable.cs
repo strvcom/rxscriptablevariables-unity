@@ -23,7 +23,7 @@ namespace STRV.Variables
 #endif
         
         /// Default value of the variable, exposed in editor if T is serializable, should not be changed from game code without a good reason
-        [Header("Values:")]        
+        [Header("Values:")]
         public T DefaultValue;
 
         private T _currentValue;
@@ -77,9 +77,8 @@ namespace STRV.Variables
         }
 
         private void OnEnable() {
-            CurrentValue = DefaultValue;
-            Assert.IsTrue(RemoteSettingsVariable && !string.IsNullOrEmpty(RemoteSettingsId), "Remote settings variable without remote settings id");
-            Assert.IsTrue(!RemoteSettingsVariable && string.IsNullOrEmpty(RemoteSettingsId), "Remote settings variable with remote settings id");
+            HandleValueChange(DefaultValue);
+            Assert.IsTrue((RemoteSettingsVariable && !string.IsNullOrEmpty(RemoteSettingsId) || !RemoteSettingsVariable), string.Format("Remote settings variable without remote settings id: {0}", name));
 
             if (RemoteSettingsVariable)
             {
@@ -102,7 +101,7 @@ namespace STRV.Variables
         }
         
         /// Does this variable type supports remote settings sync
-        protected virtual bool SupportsRemoteSettings()
+        public virtual bool SupportsRemoteSettings()
         {
             return false;
         }
