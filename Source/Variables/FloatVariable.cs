@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using UnityEngine;
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables
 {
     [CreateAssetMenu(menuName = "Variables/Float", order = 52)]

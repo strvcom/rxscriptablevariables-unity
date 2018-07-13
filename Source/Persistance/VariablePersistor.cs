@@ -3,6 +3,7 @@ using STRV.Variables.Utils;
 using UnityEngine.Assertions;
 using UnityEngine;
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables.Persistance
 {
     /// Purpose of this class is to persist given values (scriptable variables)

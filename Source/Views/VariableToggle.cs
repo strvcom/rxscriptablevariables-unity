@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UniRx;
 #endif
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables.Views
 {
     [RequireComponent(typeof(Toggle))]

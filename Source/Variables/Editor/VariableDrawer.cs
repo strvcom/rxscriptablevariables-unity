@@ -6,6 +6,7 @@ using UniRx;
 #endif
 using System;
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables
 {
     [CustomEditor(typeof(Variable<>))]

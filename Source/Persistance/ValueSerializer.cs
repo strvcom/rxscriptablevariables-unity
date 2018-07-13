@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables.Persistance
 {
     public abstract class ValueSerializer: ScriptableObject

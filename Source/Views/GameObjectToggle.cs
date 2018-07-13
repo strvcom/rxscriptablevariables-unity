@@ -3,6 +3,7 @@
 using UniRx;
 #endif
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables.Views
 {
     public class GameObjectToggle : MonoBehaviour

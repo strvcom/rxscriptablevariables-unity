@@ -1,4 +1,5 @@
-﻿namespace STRV.Variables.Persistance
+﻿// ReSharper disable once CheckNamespace
+namespace STRV.Variables.Persistance
 {
     /// Anything implementing this interface can be serialized using Value Persistor 
     public interface ISerializable

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables.Persistance
 {
     [CreateAssetMenu(menuName = "Variables/Peristance/Player Prefs Serializer", order = 15)]

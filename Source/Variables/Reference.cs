@@ -4,6 +4,7 @@ using UniRx;
 using System;
 using UnityEngine.Assertions;
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables
 {
     /// Generic base variable reference that all other variable references inherit

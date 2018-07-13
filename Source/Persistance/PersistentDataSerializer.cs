@@ -2,6 +2,7 @@
 using System.IO;
 using UnityEngine;
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables.Persistance
 {
     [CreateAssetMenu(menuName = "Variables/Peristance/Persistent Data Serializer", order = 13)]

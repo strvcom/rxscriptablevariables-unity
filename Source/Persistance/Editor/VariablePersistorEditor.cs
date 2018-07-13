@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables.Persistance
 {
     [CustomEditor(typeof(VariablePersistor))]

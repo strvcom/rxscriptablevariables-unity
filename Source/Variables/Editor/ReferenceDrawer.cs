@@ -1,8 +1,9 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-// Credits: Taken from https://github.com/roboryantron/Unite2017
+// Credits: Original taken from https://github.com/roboryantron/Unite2017
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables
 {
     public abstract class ReferenceDrawer : PropertyDrawer

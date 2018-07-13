@@ -8,6 +8,7 @@ using System.Reflection;
 // Original author: Mift (mift)
 // Variant author: Venryx(venryx)
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables.Utils
 {
     public static class ExposeProperties

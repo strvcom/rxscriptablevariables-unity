@@ -4,6 +4,7 @@
 // Original author: Venryx (venryx) (variant from Mift (mift) )
 // Variant author: Tiago Roldão(Tiago Roldão) 
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables.Utils
 {
     [CustomEditor(typeof(ExposableMonoBehaviour), true)]

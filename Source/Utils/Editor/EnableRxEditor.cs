@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables.Utils
 {
     public class EnableRxEditor: MonoBehaviour

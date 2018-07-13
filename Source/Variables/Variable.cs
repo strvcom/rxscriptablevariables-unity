@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using STRV.Variables.Persistance;
 using UnityEngine.Assertions;
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables
 {
     // Non-generic type to allow it to be exposed in Unity Inspector

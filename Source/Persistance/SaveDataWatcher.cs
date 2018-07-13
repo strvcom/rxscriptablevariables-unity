@@ -5,6 +5,7 @@ using UnityEngine;
 using UniRx;
 #endif
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables.Persistance
 {
     /// Purpose of this class is to watch certain events / timers and save data from time to time

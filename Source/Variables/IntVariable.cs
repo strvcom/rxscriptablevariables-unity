@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables
 {
     [CreateAssetMenu(menuName = "Variables/Int", order = 51)]

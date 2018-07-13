@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
 
+// ReSharper disable once CheckNamespace
 namespace STRV.Variables.Utils
 {
 	public static class JsonHelper {
