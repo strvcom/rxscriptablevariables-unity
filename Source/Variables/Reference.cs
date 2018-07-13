@@ -25,13 +25,14 @@ namespace STRV.Variables
             ConstantValue = value;
         }
 
-        #if REACTIVE_VARIABLE_RX_ENABLED
+#if REACTIVE_VARIABLE_RX_ENABLED
         public IObservable<T> AsObservable()
         {
             Assert.IsTrue(UseConstant || Variable != null, "Using variable value with no variable assigned");
             return UseConstant ? Observable.Return(ConstantValue) : Variable.AsObservable(); 
         }
-        #else
+#else
+        
         public Action<T> OnValueChanged
         {
             get

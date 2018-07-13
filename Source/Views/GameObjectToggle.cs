@@ -15,7 +15,7 @@ namespace STRV.Variables.Views
         private void Awake() {
             
 #if REACTIVE_VARIABLE_RX_ENABLED
-            Variable.AsObservable()
+            IsActive.AsObservable()
                 .Subscribe(HandleVariableChange)
                 .AddTo(this);
 #else

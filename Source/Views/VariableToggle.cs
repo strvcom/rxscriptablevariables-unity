@@ -21,7 +21,7 @@ namespace STRV.Variables.Views
                 .Subscribe(HandleToggleValueChanged)
                 .AddTo(this);
 
-            Variable.AsObservable()
+            IsOn.AsObservable()
                 .Subscribe(HandleValueChanged)
                 .AddTo(this);
 #else
