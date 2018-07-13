@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
-using WolarGames.Variables.Utils;
+using STRV.Variables.Utils;
 #if REACTIVE_VARIABLE_RX_ENABLED
 using UniRx;
 #endif
 using System.Collections.Generic;
 
-namespace WolarGames.Variables
+namespace STRV.Variables
 {
     /// Generic base variable that all other variables inherit
     public abstract class Variable<T> : ScriptableObject

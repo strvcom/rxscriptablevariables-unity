@@ -1,6 +1,6 @@
 ﻿using UnityEditor;
 
-namespace WolarGames.Variables
+namespace STRV.Variables
 {
     [CustomPropertyDrawer(typeof(StringReference))]
     public class StringReferenceDrawer : ReferenceDrawer

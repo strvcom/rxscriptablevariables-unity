@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using WolarGames.Variables.Utils;
+using STRV.Variables.Utils;
 #if REACTIVE_VARIABLE_RX_ENABLED
 using UniRx;
 #endif
 using System;
 
-namespace WolarGames.Variables
+namespace STRV.Variables
 {
     [CustomEditor(typeof(Variable<>))]
     public class VariableDrawer<T> : Editor

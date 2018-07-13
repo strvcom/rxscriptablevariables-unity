@@ -3,7 +3,7 @@ using UnityEngine;
 
 // Credits: Taken from https://github.com/roboryantron/Unite2017
 
-namespace WolarGames.Variables
+namespace STRV.Variables
 {
     public abstract class ReferenceDrawer : PropertyDrawer
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WolarGames.Variables
+namespace STRV.Variables
 {
     [Serializable]
     public class IntReference : Reference<int>

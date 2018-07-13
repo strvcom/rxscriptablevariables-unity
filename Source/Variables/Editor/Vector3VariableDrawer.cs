@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace WolarGames.Variables
+namespace STRV.Variables
 {
     [CustomEditor(typeof(Vector3Variable))]
     public class Vector3VariableDrawer : VariableDrawer<Vector3>

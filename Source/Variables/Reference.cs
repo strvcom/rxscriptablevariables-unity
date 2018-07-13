@@ -4,7 +4,7 @@ using UniRx;
 using System;
 using UnityEngine.Assertions;
 
-namespace WolarGames.Variables
+namespace STRV.Variables
 {
     /// Generic base variable reference that all other variable references inherit
     /// Can (should) only be used for getting values, not setting them
@@ -46,6 +46,13 @@ namespace WolarGames.Variables
                 else
                 {
                     return Variable.OnValueChanged;
+                }
+            }
+            set
+            {
+                if (!UseConstant)
+                {
+                    Variable.OnValueChanged = value;
                 }
             }
         }

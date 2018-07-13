@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace WolarGames.Variables.Utils
+namespace STRV.Variables.Utils
 {
     public class CreateVariableWizard : ScriptableWizard
     {

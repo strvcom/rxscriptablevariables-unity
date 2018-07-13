@@ -4,7 +4,7 @@
 // Original author: Venryx (venryx) (variant from Mift (mift) )
 // Variant author: Tiago Roldão(Tiago Roldão) 
 
-namespace WolarGames.Variables.Utils
+namespace STRV.Variables.Utils
 {
     [CustomEditor(typeof(ExposableScriptableObject), true)]
     public class ExposableScriptableObjectEditor : Editor

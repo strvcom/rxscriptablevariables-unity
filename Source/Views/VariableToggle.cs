@@ -4,27 +4,50 @@ using UnityEngine.UI;
 using UniRx;
 #endif
 
-namespace WolarGames.Variables.Views
+namespace STRV.Variables.Views
 {
     [RequireComponent(typeof(Toggle))]
     public class VariableToggle : MonoBehaviour
     {
         public BoolVariable Variable;
 
+        private Toggle _toggle;
+
         void Start() {
-            var toggle = GetComponent<Toggle>();
+            _toggle = GetComponent<Toggle>();
             
 #if REACTIVE_VARIABLE_RX_ENABLED
-            toggle.OnValueChangedAsObservable().Subscribe(value =>
-            {
-                Variable.CurrentValue = value;
-            }).AddTo(this);
+            _toggle.OnValueChangedAsObservable()
+                .Subscribe(HandleToggleValueChanged)
+                .AddTo(this);
 
-            Variable.AsObservable().Subscribe(value =>
-            {
-                toggle.isOn = value;
-            }).AddTo(this);
+            Variable.AsObservable()
+                .Subscribe(HandleValueChanged)
+                .AddTo(this);
+#else
+            _toggle.onValueChanged.AddListener(HandleToggleValueChanged);
+            Variable.OnValueChanged += HandleValueChanged;
 #endif
+        }
+        
+#if !REACTIVE_VARIABLE_RX_ENABLED
+
+        private void OnDestroy()
+        {
+            _toggle.onValueChanged.RemoveListener(HandleToggleValueChanged);
+            Variable.OnValueChanged -= HandleValueChanged;
+        }
+
+#endif
+
+        private void HandleToggleValueChanged(bool value)
+        {
+            Variable.CurrentValue = value;
+        }
+        
+        private void HandleValueChanged(bool value)
+        {
+            _toggle.isOn = value;
         }
     }
 }

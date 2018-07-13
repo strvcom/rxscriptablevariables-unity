@@ -1,6 +1,6 @@
 ﻿using UnityEditor;
 
-namespace WolarGames.Variables
+namespace STRV.Variables
 {
     [CustomEditor(typeof(FloatVariable))]
     public class StringVariableDrawer : VariableDrawer<string>

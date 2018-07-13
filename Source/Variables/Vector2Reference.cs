@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace WolarGames.Variables
+namespace STRV.Variables
 {
     [Serializable]
     public class Vector2Reference : Reference<Vector2>

@@ -8,7 +8,7 @@ using System.Reflection;
 // Original author: Mift (mift)
 // Variant author: Venryx(venryx)
 
-namespace WolarGames.Variables.Utils
+namespace STRV.Variables.Utils
 {
     public static class ExposeProperties
     {

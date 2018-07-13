@@ -3,7 +3,7 @@
 using UniRx;
 #endif
 
-namespace WolarGames.Variables.Views
+namespace STRV.Variables.Views
 {
     public class GameObjectToggle : MonoBehaviour
     {
@@ -15,11 +15,24 @@ namespace WolarGames.Variables.Views
         private void Awake() {
             
 #if REACTIVE_VARIABLE_RX_ENABLED
-            Variable.AsObservable().Subscribe((bool value) =>
-            {
-                gameObject.SetActive(!HideOnToggle && value || HideOnToggle && !value);
-            }).AddTo(this);
+            Variable.AsObservable()
+                .Subscribe(HandleVariableChange)
+                .AddTo(this);
+#else
+            Variable.OnValueChanged += HandleVariableChange;
 #endif
+        }
+
+#if !REACTIVE_VARIABLE_RX_ENABLED
+        private void OnDestroy()
+        {
+            Variable.OnValueChanged -= HandleVariableChange;
+        }
+#endif        
+
+        private void HandleVariableChange(bool value)
+        {
+            gameObject.SetActive(!HideOnToggle && value || HideOnToggle && !value);
         }
     }
 }
