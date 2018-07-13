@@ -7,7 +7,7 @@ namespace STRV.Variables.Views
 {
     public class GameObjectToggle : MonoBehaviour
     {
-        public BoolReference Variable;
+        public BoolReference IsActive;
 
         /// Should this be hidden when toggle is on
         public bool HideOnToggle;
@@ -19,14 +19,15 @@ namespace STRV.Variables.Views
                 .Subscribe(HandleVariableChange)
                 .AddTo(this);
 #else
-            Variable.OnValueChanged += HandleVariableChange;
+            IsActive.OnValueChanged += HandleVariableChange;
+            HandleVariableChange(IsActive.Value);
 #endif
         }
 
 #if !REACTIVE_VARIABLE_RX_ENABLED
         private void OnDestroy()
         {
-            Variable.OnValueChanged -= HandleVariableChange;
+            IsActive.OnValueChanged -= HandleVariableChange;
         }
 #endif        
 

@@ -9,7 +9,7 @@ namespace STRV.Variables.Views
     [RequireComponent(typeof(Toggle))]
     public class VariableToggle : MonoBehaviour
     {
-        public BoolVariable Variable;
+        public BoolVariable IsOn;
 
         private Toggle _toggle;
 
@@ -26,7 +26,8 @@ namespace STRV.Variables.Views
                 .AddTo(this);
 #else
             _toggle.onValueChanged.AddListener(HandleToggleValueChanged);
-            Variable.OnValueChanged += HandleValueChanged;
+            IsOn.OnValueChanged += HandleValueChanged;
+            HandleValueChanged(IsOn.CurrentValue);
 #endif
         }
         
@@ -35,14 +36,14 @@ namespace STRV.Variables.Views
         private void OnDestroy()
         {
             _toggle.onValueChanged.RemoveListener(HandleToggleValueChanged);
-            Variable.OnValueChanged -= HandleValueChanged;
+            IsOn.OnValueChanged -= HandleValueChanged;
         }
 
 #endif
 
         private void HandleToggleValueChanged(bool value)
         {
-            Variable.CurrentValue = value;
+            IsOn.CurrentValue = value;
         }
         
         private void HandleValueChanged(bool value)
