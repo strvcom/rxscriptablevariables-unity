@@ -81,6 +81,7 @@ namespace STRV.Variables.Persistance
                 var key = item.GetKey();
                 if (values.ContainsKey(key))
                 {
+                    item.SkipDefaultValueReset = true;
                     item.SetStringValue(values[key]);    
                 }
                 else

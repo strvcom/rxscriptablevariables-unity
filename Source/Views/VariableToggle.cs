@@ -18,17 +18,17 @@ namespace STRV.Variables.Views
             _toggle = GetComponent<Toggle>();
             
 #if REACTIVE_VARIABLE_RX_ENABLED
-            _toggle.OnValueChangedAsObservable()
-                .Subscribe(HandleToggleValueChanged)
-                .AddTo(this);
-
             IsOn.AsObservable()
                 .Subscribe(HandleValueChanged)
                 .AddTo(this);
+            
+            _toggle.OnValueChangedAsObservable()
+                .Subscribe(HandleToggleValueChanged)
+                .AddTo(this);
 #else
+            HandleValueChanged(IsOn.CurrentValue);        
             _toggle.onValueChanged.AddListener(HandleToggleValueChanged);
             IsOn.OnValueChanged += HandleValueChanged;
-            HandleValueChanged(IsOn.CurrentValue);
 #endif
         }
         
