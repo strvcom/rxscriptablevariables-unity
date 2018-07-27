@@ -42,11 +42,9 @@ namespace STRV.Variables
         public bool RemoteSettingsVariable;
         public string RemoteSettingsId;
         
-#if UNITY_EDITOR
         [Header("Developer:")]
         [Multiline]
         public string DeveloperDescription = "";
-#endif
         
         /// Default value of the variable, exposed in editor if T is serializable, should not be changed from game code without a good reason
         [Header("Values:")]

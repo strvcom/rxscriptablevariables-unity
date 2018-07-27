@@ -55,11 +55,10 @@ namespace STRV.Variables.Operations
 #endif
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
 #if REACTIVE_VARIABLE_RX_ENABLED
-            _disposables.Dispose();
-            _disposables = null;
+            _disposables.Clear();
 #else
             _left.OnValueChanged -= HandleValueChanged;
             _right.OnValueChanged -= HandleValueChanged;
