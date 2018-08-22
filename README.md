@@ -1,5 +1,5 @@
 # Scriptable Object Variables with UniRx
-This is my implementation of variables in Unity using scriptable objects as explained in [this](https://www.youtube.com/watch?v=raQ3iHhE_Kk&t=3289s) talk. I'm using it with [UniRx](https://github.com/neuecc/UniRx) but I have also implemented version that is without UniRx and is using C# Actions instead. By default you will get version without UniRx integration. See Integrations section for a guide how to enable UniRx integration.
+This is an implementation of variables in Unity using scriptable objects as explained in [this](https://www.youtube.com/watch?v=raQ3iHhE_Kk&t=3289s) talk. We have integration with [UniRx](https://github.com/neuecc/UniRx) but there is an option to use this library without UniRx and use C# Actions instead. By default you will get version without UniRx integration. See Integrations section for a guide how to enable UniRx integration.
 
 # Usage
 ## Creating Variable
@@ -13,7 +13,7 @@ or the variable itself
 ```C#
 public BoolVariable myVariableName;
 ```
-And use it anyway you with. I prefer to use references for reading the values and variables for writing into them.
+And use it anyway you with. Preferably you want to use references for reading the values and variables for writing into them.
 
 # Persistance
 There is a simple, generic, build in solution for persisting variables. What you need to do is
@@ -25,7 +25,7 @@ There is a simple, generic, build in solution for persisting variables. What you
    - (optional) - Put SaveDataWatcher on a game object, assign it a persistor(s), it will save / load data automatically and periodically
 
 # Creating new custom variables
-To simplify the process of creation of new variables and editor scripts for them I have implemented tool that help you with that
+To simplify the process of creation of new variables and editor scripts for them we have implemented tool that help you with that
    - Use Tools -> Reactive Variables -> Create New (it uses current assembly, if you want to create variable for another assembly like Unitys Game Object or you are using new Assembly Definition Files, use All Assembly option)
    - Pick folders where to store generated files
         - Please note that the editor scripts needs to be stored in Editor folder or assembly
