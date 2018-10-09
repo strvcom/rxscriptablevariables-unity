@@ -66,7 +66,7 @@ namespace STRV.Variables.Utils
             wizard.AllTypes = allTypes.OrderBy(type => type.Name);
         }
 
-        void OnWizardCreate()
+        private void OnWizardCreate()
         {
             if (string.IsNullOrEmpty(StorePath))
             {
@@ -137,7 +137,7 @@ namespace STRV.Variables.Utils
                 _filterString = _newString;
                 if (_filterString.Length >= 3)
                 {
-                    _filteredTypes = AllTypes.Where(type => type.Name.Contains(_filterString));
+                    _filteredTypes = AllTypes.Where(type => type.Name.IndexOf(_filterString, StringComparison.OrdinalIgnoreCase) >= 0);
                     _filteredTypeNames = _filteredTypes.Select(type => type.Name).ToArray();
                 }
             }
