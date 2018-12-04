@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using STRV.Variables.Utils;
 using UnityEngine.Assertions;
 using UnityEngine;
@@ -81,8 +82,15 @@ namespace STRV.Variables.Persistance
                 var key = item.GetKey();
                 if (values.ContainsKey(key))
                 {
-                    item.SkipDefaultValueReset = true;
-                    item.SetStringValue(values[key]);    
+                    try
+                    {
+                        item.SetStringValue(values[key]);
+                        item.SkipDefaultValueReset = true;
+                    }
+                    catch (FormatException e)
+                    {
+                        Debug.LogErrorFormat("Problem loading variable \"{0}\", exception: {1}", key, e);
+                    }
                 }
                 else
                 {
