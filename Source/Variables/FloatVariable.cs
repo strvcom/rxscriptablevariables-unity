@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Linq;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -12,8 +13,7 @@ namespace STRV.Variables
             var firebaseValue = Firebase.RemoteConfig.FirebaseRemoteConfig.GetValue(RemoteSettingsId);
             if (!string.IsNullOrEmpty(firebaseValue.StringValue))
             {
-                var remoteValue = (float)firebaseValue.LongValue;
-                Debug.Log(this.name + remoteValue);
+                var remoteValue = (float)firebaseValue.DoubleValue;
                 HandleValueChange(remoteValue);
             }
         }

@@ -111,10 +111,7 @@ namespace STRV.Variables
             if (RemoteSettingsVariable)
             {
                 SyncValue();
-                RemoteSettings.Updated += SyncValue;
                 VariablesUpdatedHandler.Updated += SyncValue;
-
-
             }
         }
 
