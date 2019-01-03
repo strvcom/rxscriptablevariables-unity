@@ -8,8 +8,12 @@ namespace STRV.Variables
     {
         protected override void SyncValue()
         {
-            var remoteValue = RemoteSettings.GetString(RemoteSettingsId, CurrentValue);
-            HandleValueChange(remoteValue);
+            var firebaseValue = Firebase.RemoteConfig.FirebaseRemoteConfig.GetValue(RemoteSettingsId);
+            if (!string.IsNullOrEmpty(firebaseValue.StringValue))
+            {
+                var remoteValue = firebaseValue.StringValue;
+                HandleValueChange(remoteValue);
+            }
         }
 
         public override bool SupportsRemoteSettings()

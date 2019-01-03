@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Linq;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -9,8 +10,12 @@ namespace STRV.Variables
     {
         protected override void SyncValue()
         {
-            var remoteValue = RemoteSettings.GetFloat(RemoteSettingsId, CurrentValue);
-            HandleValueChange(remoteValue);
+            var firebaseValue = Firebase.RemoteConfig.FirebaseRemoteConfig.GetValue(RemoteSettingsId);
+            if (!string.IsNullOrEmpty(firebaseValue.StringValue))
+            {
+                var remoteValue = (float)firebaseValue.DoubleValue;
+                HandleValueChange(remoteValue);
+            }
         }
 
         public override bool SupportsRemoteSettings()
