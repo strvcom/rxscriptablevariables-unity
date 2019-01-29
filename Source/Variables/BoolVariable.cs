@@ -1,5 +1,4 @@
-﻿using Firebase.RemoteConfig;
-using Game.Src.Boot;
+﻿using Game.Src.Boot;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -10,6 +9,7 @@ namespace STRV.Variables
     {
         protected override void SyncValue()
         {
+            /*
             if (!FirebaseInit.IsInitialized)
             {
                 Debug.Log("Trying to sync remote variable before firebase is initialized");
@@ -22,8 +22,10 @@ namespace STRV.Variables
                 var remoteValue = firebaseValue.BooleanValue;
                 HandleValueChange(remoteValue);
             }
+            */
         }
 
+        /*
         public ValueSource GetValueSource()
         {
             if (!FirebaseInit.IsInitialized)
@@ -34,6 +36,7 @@ namespace STRV.Variables
             var firebaseValue = Firebase.RemoteConfig.FirebaseRemoteConfig.GetValue(RemoteSettingsId);
             return firebaseValue.Source;
         }
+        */
 
         public override bool SupportsRemoteSettings()
         {

@@ -11,6 +11,7 @@ namespace STRV.Variables
     {
         protected override void SyncValue()
         {
+            /*
             if (!FirebaseInit.IsInitialized)
             {
                 Debug.Log("Trying to sync remote variable before firebase is initialized");
@@ -23,6 +24,7 @@ namespace STRV.Variables
                 var remoteValue = (float)firebaseValue.DoubleValue;
                 HandleValueChange(remoteValue);
             }
+            */
         }
 
         public override bool SupportsRemoteSettings()
