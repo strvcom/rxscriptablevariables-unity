@@ -1,5 +1,4 @@
-﻿using Game.Src.Boot;
-using UnityEngine;
+﻿using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace STRV.Variables
@@ -9,34 +8,8 @@ namespace STRV.Variables
     {
         protected override void SyncValue()
         {
-            /*
-            if (!FirebaseInit.IsInitialized)
-            {
-                Debug.Log("Trying to sync remote variable before firebase is initialized");
-                return;
-            } 
-                
-            var firebaseValue = Firebase.RemoteConfig.FirebaseRemoteConfig.GetValue(RemoteSettingsId);
-            if (!string.IsNullOrEmpty(firebaseValue.StringValue))
-            {
-                var remoteValue = firebaseValue.BooleanValue;
-                HandleValueChange(remoteValue);
-            }
-            */
-        }
 
-        /*
-        public ValueSource GetValueSource()
-        {
-            if (!FirebaseInit.IsInitialized)
-            {
-                return ValueSource.DefaultValue;
-            }
-            
-            var firebaseValue = Firebase.RemoteConfig.FirebaseRemoteConfig.GetValue(RemoteSettingsId);
-            return firebaseValue.Source;
         }
-        */
 
         public override bool SupportsRemoteSettings()
         {
