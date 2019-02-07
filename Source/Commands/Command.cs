@@ -33,6 +33,9 @@ namespace Variables.Source.Commands
     [CreateAssetMenu(menuName = "Commands/No Param")]
     public class Command : Command<Unit>
     {
-        
+        public bool Execute()
+        {
+            return base.Execute(Unit.Default);
+        }
     }
 }
