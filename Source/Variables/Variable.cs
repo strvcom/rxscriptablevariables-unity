@@ -36,7 +36,7 @@ namespace STRV.Variables
     }
     
     /// Generic base variable that all other variables inherit
-    public abstract class Variable<T> : Variable
+    public abstract class Variable<T> : Variable, IObservable<T>
     {
         [Header("Remote Settings:")]
         public bool RemoteSettingsVariable;
@@ -132,6 +132,11 @@ namespace STRV.Variables
         public virtual bool SupportsRemoteSettings()
         {
             return false;
+        }
+
+        public IDisposable Subscribe(IObserver<T> observer)
+        {
+            return AsObservable().Subscribe(observer);
         }
     }
 }

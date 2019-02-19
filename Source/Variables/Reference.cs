@@ -9,7 +9,7 @@ namespace STRV.Variables
 {
     /// Generic base variable reference that all other variable references inherit
     /// Can (should) only be used for getting values, not setting them
-    public abstract class Reference<T>
+    public abstract class Reference<T> : IObservable<T>
     {
         public bool UseConstant = true;
         public T ConstantValue;
@@ -71,6 +71,11 @@ namespace STRV.Variables
         public static implicit operator T(Reference<T> reference)
         {
             return reference.Value;
+        }
+        
+        public IDisposable Subscribe(IObserver<T> observer)
+        {
+            return AsObservable().Subscribe(observer);
         }
     }
 }
