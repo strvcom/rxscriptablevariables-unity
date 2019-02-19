@@ -14,7 +14,23 @@ namespace STRV.Variables.Persistance
     {
         [SerializeField] private VariablePersistor[] _persistors;
         [SerializeField] private int _autosaveInterval = 30;
-        
+
+        private static SaveDataWatcher _instance;
+
+        // Not really singleton but should be just one in scene
+        private void Awake()
+        {
+            if (_instance != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                DontDestroyOnLoad(gameObject);
+                _instance = this;
+            }
+        }
+
         private void Start()
         {
 #if REACTIVE_VARIABLE_RX_ENABLED
