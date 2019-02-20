@@ -7,26 +7,20 @@ using UnityEngine;
 namespace Variables.Source.Commands
 {
     /// Basically just ReactiveCommand wrapped into a ScriptableObject
-    public class Command<T>: ScriptableObject, IReactiveCommand<T>
+    public class Command<T>: ScriptableObject, IObservable<T>
     {
-        private ReactiveCommand<T> _command = new ReactiveCommand<T>();
+        private Subject<T> _subject = new Subject<T>();
 
         /// Returns false if CanExecute of the command is false
         public bool Execute(T value)
         {
-            return _command.Execute(value);
+            _subject.OnNext(value);
+            return true;
         }
-
-        public UniTask<T> WaitUntilExecuteAsync(CancellationToken cancellationToken)
-        {
-            return _command.WaitUntilExecuteAsync(cancellationToken);
-        }
-
-        public IReadOnlyReactiveProperty<bool> CanExecute => _command.CanExecute;
-
+        
         public IDisposable Subscribe(IObserver<T> observer)
         {
-            return _command.Subscribe(observer);
+            return _subject.Subscribe(observer);
         }
     }
 
