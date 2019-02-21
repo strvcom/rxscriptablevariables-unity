@@ -26,33 +26,33 @@ namespace STRV.Variables.Persistance
 
         public void Save()
         {
-            Debug.Log("Saving data to persistent storage");
+            Debug.Log("<color=#4169E1>Persistor</color> - Saving data to persistent storage");
             if (_serializer != null)
             {
                 if (!_serializer.Save(this))
                 {
-                    Debug.LogError("Save was unsuccesfull!");
+                    Debug.LogError("<color=#4169E1>Persistor</color> - Save was unsuccesfull!");
                 }
             }
             else
             {
-                Debug.LogError("Serializer is missing, please assing one");
+                Debug.LogError("<color=#4169E1>Persistor</color> - Serializer is missing, please assing one");
             }
         }
 
         public void Load()
         {
-            Debug.Log("Loading data from persistent storage");
+            Debug.Log("<color=#4169E1>Persistor</color> - Loading data from persistent storage");
             if (_serializer != null)
             {
                 if (!_serializer.Load(this))
                 {
-                    Debug.LogWarning("Load was unsuccesfull, this might be because no save file was created previously");
+                    Debug.LogWarning("<color=#4169E1>Persistor</color> - Load was unsuccesfull, this might be because no save file was created previously");
                 }
             }
             else
             {
-                Debug.LogError("Serializer is missing, please assing one");
+                Debug.LogError("<color=#4169E1>Persistor</color> - Serializer is missing, please assing one");
             }
         }
 
@@ -89,12 +89,12 @@ namespace STRV.Variables.Persistance
                     }
                     catch (FormatException e)
                     {
-                        Debug.LogErrorFormat("Problem loading variable \"{0}\", exception: {1}", key, e);
+                        Debug.LogErrorFormat("<color=#4169E1>Persistor</color> - Problem loading variable \"{0}\", exception: {1}", key, e);
                     }
                 }
                 else
                 {
-                    Debug.LogWarningFormat("Item \"{0}\" not found in persistent storage", key);
+                    Debug.LogWarningFormat("<color=#4169E1>Persistor</color> - Item \"{0}\" not found in persistent storage", key);
                 }
             }
         }
