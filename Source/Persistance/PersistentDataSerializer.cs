@@ -11,7 +11,7 @@ namespace STRV.Variables.Persistance
         public override bool Load(ISerializable target)
         {
             var path = DataPathForFilename(target.GetKey());
-            Debug.LogFormat("Loading data from \"{0}\"", path);
+            Debug.LogFormat("<color=#4169E1>Persistor</color> - Loading data from \"{0}\"", path);
             if (File.Exists(path))
             {
                 try
@@ -35,7 +35,7 @@ namespace STRV.Variables.Persistance
         public override bool Save(ISerializable value)
         {
             var path = DataPathForFilename(value.GetKey());
-            Debug.LogFormat("Saving data to \"{0}\"", path);
+            Debug.LogFormat("<color=#4169E1>Persistor</color> - Saving data to \"{0}\"", path);
             try
             {
                 File.WriteAllText(path, value.GetStringValue());
