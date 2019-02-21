@@ -11,7 +11,7 @@ namespace STRV.Variables
         {
             if (!FirebaseInit.IsInitialized)
             {
-                Debug.Log("Trying to sync remote variable before firebase is initialized");
+                Debug.Log("<color=#ffa500ff>Remote Config</color> - Trying to sync remote variable before firebase is initialized");
                 return;
             } 
             
