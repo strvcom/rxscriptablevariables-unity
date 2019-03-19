@@ -1,0 +1,18 @@
+{
+    "name": "Variables.Editor",
+    "references": [
+        "Variables",
+        "UniRx",
+        "Variables.Utils.Editor"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
