@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using STRV.Variables.Utils;
 using UnityEngine.Assertions;
 using UnityEngine;
+using Variables.Source.Persistance;
 
 // ReSharper disable once CheckNamespace
 namespace STRV.Variables.Persistance
@@ -14,7 +15,7 @@ namespace STRV.Variables.Persistance
         [SerializeField] private string _filename;
         
         [Header("To be saved:")]
-        [SerializeField] private List<Variable> _serializedItems;
+        [SerializeField] private List<PersistableScriptableObject> _serializedItems;
 
         [Header("Destination:")]
         [SerializeField] private ValueSerializer _serializer;
