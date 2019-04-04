@@ -80,6 +80,12 @@ namespace STRV.Variables
             CurrentValue = value.CurrentValue;
         }
 
+        // Notifies the observers even if set value is same as current value
+        public void ForceSetValue(T value)
+        {
+            HandleValueChange(value, true);
+        }
+
         protected void HandleValueChange(T value, bool forced = false)
         {
             if (!EqualityComparer<T>.Default.Equals(_currentValue, value) || forced) {
