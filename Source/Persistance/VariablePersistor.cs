@@ -22,11 +22,7 @@ namespace STRV.Variables.Persistance
         
         private void OnEnable()
         {
-            // To prevent loading in editor edit mode
-            if (Application.isPlaying)
-            {
-                Load();    
-            }
+            Load();
         }
 
         public void Save()
