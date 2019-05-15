@@ -19,6 +19,17 @@ namespace STRV.Variables
         [NonSerialized]
         public bool SkipDefaultValueReset = false;
         
+        public void ForceSync()
+        {
+            SyncValue();   
+        }
+        
+        /// If this value is syncable via remote settings, implement this 
+        protected virtual void SyncValue()
+        {
+            // Not implemented for all values
+        }
+        
         public virtual string GetKey()
         {
             return GetInstanceID().ToString();
@@ -122,12 +133,6 @@ namespace STRV.Variables
             return variable.CurrentValue;
         }
 
-        /// If this value is syncable via remote settings, implement this 
-        protected virtual void SyncValue()
-        {
-            // Not implemented for all values
-        }
-        
         /// Does this variable type supports remote settings sync
         public virtual bool SupportsRemoteSettings()
         {
