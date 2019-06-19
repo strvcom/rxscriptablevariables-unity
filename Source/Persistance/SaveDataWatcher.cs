@@ -12,9 +12,23 @@ namespace STRV.Variables.Persistance
     /// Slam this on some game object in the scene to get this funcionality
     public class SaveDataWatcher: MonoBehaviour
     {
+        private static SaveDataWatcher _instance;
+        
         [SerializeField] private VariablePersistor[] _persistors;
         [SerializeField] private int _autosaveInterval = 30;
-        
+
+        private void Awake()
+        {
+            if (_instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
         private void Start()
         {
 #if REACTIVE_VARIABLE_RX_ENABLED
