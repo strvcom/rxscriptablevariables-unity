@@ -7,6 +7,7 @@ using UniRx;
 using System.Collections.Generic;
 using STRV.Variables.Persistance;
 using UnityEngine.Assertions;
+using UnityEngine.Serialization;
 using Variables.Source.Persistance;
 
 // ReSharper disable once CheckNamespace
@@ -15,9 +16,17 @@ namespace STRV.Variables
     // Non-generic type to allow it to be exposed in Unity Inspector
     public abstract class Variable : PersistableScriptableObject
     {
+        [Header("Persistence:")]
+        [SerializeField] private string _persistenceKey;
+
+        private void Reset()
+        {
+            _persistenceKey = GetInstanceID().ToString();
+        }
+
         public override string GetKey()
         {
-            return GetInstanceID().ToString();
+            return _persistenceKey;
         }
 
         public override string GetStringValue()

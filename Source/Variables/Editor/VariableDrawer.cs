@@ -58,6 +58,7 @@ namespace STRV.Variables
             SerializedProperty prop = serializedObject.FindProperty("m_Script");
             EditorGUILayout.PropertyField(prop, true);
             
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("_persistenceKey"), true);
 
             if (_target.SupportsRemoteSettings())
             {
