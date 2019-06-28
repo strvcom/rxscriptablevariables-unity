@@ -7,6 +7,7 @@ using UniRx;
 using System.Collections.Generic;
 using STRV.Variables.Persistance;
 using UnityEngine.Assertions;
+using UnityEngine.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace STRV.Variables
@@ -29,10 +30,18 @@ namespace STRV.Variables
         {
             // Not implemented for all values
         }
-        
+
+        [Header("Persistence:")]
+        [SerializeField] private string _persistenceKey;
+
+        private void Reset()
+        {
+            _persistenceKey = GetInstanceID().ToString();
+        }
+
         public virtual string GetKey()
         {
-            return GetInstanceID().ToString();
+            return _persistenceKey;
         }
 
         public virtual string GetStringValue()

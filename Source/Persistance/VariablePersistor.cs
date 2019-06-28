@@ -24,6 +24,11 @@ namespace STRV.Variables.Persistance
             Load();
         }
 
+        public List<Variable> TestOnly_GetItems()
+        {
+            return _serializedItems;
+        }
+
         public void Save()
         {
             Debug.Log("<color=#4169E1>Persistor</color> - Saving data to persistent storage");
