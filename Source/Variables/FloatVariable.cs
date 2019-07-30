@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Linq;
-using Game.Src.Boot;
 using UnityEngine;
+using Variables.Source.Utils;
 
 // ReSharper disable once CheckNamespace
 namespace STRV.Variables
