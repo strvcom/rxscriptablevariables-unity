@@ -5,6 +5,8 @@ using STRV.Variables.Utils;
 using UniRx;
 #endif
 using System;
+using UnityEditor.Experimental.UIElements;
+using PropertyField = STRV.Variables.Utils.PropertyField;
 
 // ReSharper disable once CheckNamespace
 namespace STRV.Variables

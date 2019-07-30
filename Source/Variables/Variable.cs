@@ -8,12 +8,13 @@ using System.Collections.Generic;
 using STRV.Variables.Persistance;
 using UnityEngine.Assertions;
 using UnityEngine.Serialization;
+using Variables.Source.Persistance;
 
 // ReSharper disable once CheckNamespace
 namespace STRV.Variables
 {
     // Non-generic type to allow it to be exposed in Unity Inspector
-    public abstract class Variable : ScriptableObject, ISerializable
+    public abstract class Variable : PersistableScriptableObject
     {
         /// if this is set to true, initialisation of the variable with default value will not be performed
         /// This is mainly used by the persistor to prevent overriding loaded value with default value but it can also be used by programmer with a good reason to do so 
@@ -38,25 +39,25 @@ namespace STRV.Variables
         {
             _persistenceKey = GetInstanceID().ToString();
         }
-
-        public virtual string GetKey()
+        
+        public override string GetKey()
         {
             return _persistenceKey;
         }
 
-        public virtual string GetStringValue()
+        public override string GetStringValue()
         {
             throw new NotImplementedException("Please implement this on Variable subsclass to support it's persisting: " + GetType().Name);
         }
 
-        public virtual void SetStringValue(string value)
+        public override void SetStringValue(string value)
         {
             throw new NotImplementedException("Please implement this on Variable subsclass to support it's persisting: " + GetType().Name);
         }
     }
     
     /// Generic base variable that all other variables inherit
-    public abstract class Variable<T> : Variable
+    public abstract class Variable<T> : Variable, IObservable<T>
     {
         [Header("Remote Settings:")]
         public bool RemoteSettingsVariable;
@@ -104,6 +105,12 @@ namespace STRV.Variables
             CurrentValue = value.CurrentValue;
         }
 
+        // Notifies the observers even if set value is same as current value
+        public void ForceSetValue(T value)
+        {
+            HandleValueChange(value, true);
+        }
+
         protected void HandleValueChange(T value, bool forced = false)
         {
             if (!EqualityComparer<T>.Default.Equals(_currentValue, value) || forced) {
@@ -146,6 +153,11 @@ namespace STRV.Variables
         public virtual bool SupportsRemoteSettings()
         {
             return false;
+        }
+
+        public IDisposable Subscribe(IObserver<T> observer)
+        {
+            return AsObservable().Subscribe(observer);
         }
     }
 }

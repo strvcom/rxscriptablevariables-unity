@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using STRV.Variables.Utils;
 using UnityEngine.Assertions;
 using UnityEngine;
+using Variables.Source.Persistance;
 
 // ReSharper disable once CheckNamespace
 namespace STRV.Variables.Persistance
@@ -14,7 +15,7 @@ namespace STRV.Variables.Persistance
         [SerializeField] private string _filename;
         
         [Header("To be saved:")]
-        [SerializeField] private List<Variable> _serializedItems;
+        [SerializeField] private List<PersistableScriptableObject> _serializedItems;
 
         [Header("Destination:")]
         [SerializeField] private ValueSerializer _serializer;
@@ -24,7 +25,7 @@ namespace STRV.Variables.Persistance
             Load();
         }
 
-        public List<Variable> TestOnly_GetItems()
+        public List<PersistableScriptableObject> TestOnly_GetItems()
         {
             return _serializedItems;
         }
@@ -72,7 +73,15 @@ namespace STRV.Variables.Persistance
             var dictionary = new Dictionary<string, string>();
             foreach (var item in _serializedItems)
             {
-                dictionary[item.GetKey()] = item.GetStringValue();
+                try
+                {
+                    dictionary[item.GetKey()] = item.GetStringValue();
+                }
+                // This catch them all here is here to prevent one faulty item that is being saved to screw up every other item from saving
+                catch (Exception e)
+                {
+                    Debug.LogErrorFormat("<color=#4169E1>Persistor</color> - Problem getting data to be saved for key, exception: {0}", e);
+                }
             }
             
             return JsonHelper.DictionaryToJson(dictionary);
@@ -92,7 +101,8 @@ namespace STRV.Variables.Persistance
                         item.SetStringValue(values[key]);
                         item.SkipDefaultValueReset = true;
                     }
-                    catch (FormatException e)
+                    // This catch them all here is here to prevent one faulty item that is being loaded to screw up every other item from loading
+                    catch (Exception e)
                     {
                         Debug.LogErrorFormat("<color=#4169E1>Persistor</color> - Problem loading variable \"{0}\", exception: {1}", key, e);
                     }

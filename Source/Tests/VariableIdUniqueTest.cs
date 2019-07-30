@@ -23,7 +23,7 @@ namespace Variables.Source.Tests
                 
                 if (idsSet.Contains(key))
                 {
-                    Assert.Fail($"Duplicated key for serialization {key}");
+                    Assert.Fail($"Duplicated key for serialization {key} on item \"{item.name}\"");
                 }
                 else
                 {
