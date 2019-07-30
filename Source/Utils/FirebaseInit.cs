@@ -5,6 +5,7 @@ using Firebase.RemoteConfig;
 using STRV.Variables;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Variables.Source.Utils
 {
@@ -58,8 +59,8 @@ namespace Variables.Source.Utils
                         .Subscribe(_ => { InitializeRemoteSettings(); });
             
 #if !UNITY_EDITOR
-                EventDispatcher.Receive<ApplicationFocusEvent>()
-                    .Where(e => e.HasFocus)
+                Observable.EveryApplicationFocus()
+                    .Where(hasFocus => hasFocus)
                     .Subscribe(_ => { UpdateRemoteSettings(); });
 #endif
             }
