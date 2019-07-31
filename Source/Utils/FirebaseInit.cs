@@ -12,6 +12,7 @@ namespace Variables.Source.Utils
     public static class FirebaseInit
     {
         public static bool IsInitialized;
+        public static bool RemoteConfigFetched => _remoteConfigFetched;
         public static FirebaseApp App;
         
         private static bool _remoteConfigFetched;
