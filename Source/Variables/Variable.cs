@@ -16,11 +16,6 @@ namespace STRV.Variables
     // Non-generic type to allow it to be exposed in Unity Inspector
     public abstract class Variable : PersistableScriptableObject
     {
-        /// if this is set to true, initialisation of the variable with default value will not be performed
-        /// This is mainly used by the persistor to prevent overriding loaded value with default value but it can also be used by programmer with a good reason to do so 
-        [NonSerialized]
-        public bool SkipDefaultValueReset = false;
-        
         public void ForceSync()
         {
             SyncValue();   
