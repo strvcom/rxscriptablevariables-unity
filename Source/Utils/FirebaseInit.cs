@@ -5,7 +5,6 @@ using Firebase.RemoteConfig;
 using STRV.Variables;
 using UniRx;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Variables.Source.Utils
 {
