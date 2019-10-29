@@ -5,6 +5,8 @@ using STRV.Variables.Utils;
 using UniRx;
 #endif
 using System;
+using System.Linq;
+using STRV.Variables.Persistance;
 
 // ReSharper disable once CheckNamespace
 namespace STRV.Variables
@@ -17,6 +19,8 @@ namespace STRV.Variables
 
         private IDisposable _disposable;
 
+        private VariablePersistor _persistor;
+        
         public void OnEnable() {
             _target = target as Variable<T>;
             _fields = ExposeProperties.GetProperties(_target);
@@ -27,6 +31,25 @@ namespace STRV.Variables
             });
 #else
             _target.OnValueChanged += HandleValueChanged;
+#endif
+
+            _persistor = GetPersistor();
+        }
+        
+        private VariablePersistor GetPersistor()
+        {
+#if UNITY_EDITOR
+            string[] guids = AssetDatabase.FindAssets("t:"+ typeof(VariablePersistor).Name);  //FindAssets uses tags check documentation for more info
+            VariablePersistor[] a = new VariablePersistor[guids.Length];
+            for(int i =0;i<guids.Length;i++)         //probably could get optimized 
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+                a[i] = AssetDatabase.LoadAssetAtPath<VariablePersistor>(path);
+            }
+ 
+            return a.First();
+#else
+            return null;
 #endif
         }
 
@@ -58,6 +81,18 @@ namespace STRV.Variables
             
             EditorGUILayout.PropertyField(serializedObject.FindProperty("_persistenceKey"), true);
 
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Label("Persisted:");
+            if (_persistor.TestOnly_GetItems().Contains(target))
+            {
+                GUILayout.Label("TRUE",  EditorStyles.boldLabel);    
+            }
+            else
+            {
+                GUILayout.Label("FALSE",  EditorStyles.boldLabel);
+            }
+            EditorGUILayout.EndHorizontal();
+            
             if (_target.SupportsRemoteSettings())
             {
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("RemoteSettingsVariable"), true);  
