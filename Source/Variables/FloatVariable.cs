@@ -20,7 +20,8 @@ namespace STRV.Variables
             var firebaseValue = Firebase.RemoteConfig.FirebaseRemoteConfig.GetValue(RemoteSettingsId);
             if (!string.IsNullOrEmpty(firebaseValue.StringValue))
             {
-                var remoteValue = (float)firebaseValue.DoubleValue;
+                var value = firebaseValue.StringValue;
+                var remoteValue = float.Parse(value, CultureInfo.InvariantCulture);
                 HandleValueChange(remoteValue);
             }
         }
